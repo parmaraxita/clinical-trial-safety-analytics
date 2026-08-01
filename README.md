@@ -48,3 +48,11 @@ A PostgreSQL-based clinical trial analytics platform designed to aggregate, anal
 * **Conditional Logic (`CASE`):** Categorized real-time patient safety risk profiles (Normal, Prehypertension, Hypertension Alert).
 * **Optimization & Reporting:** Built B-Tree indexes on high-cardinality join and timestamp columns, alongside reusable SQL Views (`vw_patient_longitudinal_summary`) for reporting tools.
 *
+git clone [https://github.com/parmaraxita/clinical-trial-safety-analytics.git](https://github.com/parmaraxita/clinical-trial-safety-analytics.git)
+cd clinical-trial-safety-analytics
+
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+streamlit run app.py
