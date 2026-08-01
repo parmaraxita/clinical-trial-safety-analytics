@@ -17,6 +17,33 @@ The relational database consists of 5 normalized tables:
 
 ## Technical SQL Highlights
 * **Window Functions (`FIRST_VALUE`, `PARTITION BY`):** Computed longitudinal baseline shifts for individual patients across clinical visits.
+* # Clinical Trial Efficacy & Patient Safety Analytics Platform
+
+## Overview
+A PostgreSQL-based clinical trial analytics platform designed to aggregate, analyze, and track patient safety outcomes and biomarker efficacy across treatment arms.
+
+## Project Structure
+* `schema.sql` - Relational database schema defining patients, study arms, assignments, biomarkers, and adverse events.
+* `seeds.sql` - Synthetic trial dataset containing longitudinal patient measurements and safety events.
+* `queries/`
+  - `01_efficacy_cte.sql` - CTE-based analysis of baseline vs. latest endpoint biomarker response.
+  - `02_longitudinal.sql` - Longitudinal tracking of biomarker trends over study visits.
+  - `03_safety_flags.sql` - Safety monitoring query filtering high-severity adverse drug events.
+
+## Key Findings & Sample Query Output
+
+### Primary Efficacy Endpoint (% Change from Baseline)
+| Trial Arm | Total Patients | Avg Baseline | Avg Latest | Avg % Change |
+| :--- | :--- | :--- | :--- | :--- |
+| **Drug A (High Dose)** | 25 | 120.50 | 65.20 | **-45.89%** |
+| **Drug B (Low Dose)**  | 25 | 118.80 | 88.40 | **-25.59%** |
+| **Placebo**            | 25 | 121.10 | 119.80 | **-1.07%** |
+
+### High-Severity Safety Flags
+| Severity Level | Events Detected | Action Taken |
+| :--- | :--- | :--- |
+| **Severe** | 4 | Dose Reduction / Temporary Hold |
+| **Life-Threatening** | 1 | Permanent Study Drug Withdrawal |
 * **Common Table Expressions (CTEs):** Aggregated baseline-to-latest efficacy metrics across study cohorts.
 * **Conditional Logic (`CASE`):** Categorized real-time patient safety risk profiles (Normal, Prehypertension, Hypertension Alert).
 * **Optimization & Reporting:** Built B-Tree indexes on high-cardinality join and timestamp columns, alongside reusable SQL Views (`vw_patient_longitudinal_summary`) for reporting tools.
